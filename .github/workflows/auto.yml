@@ -34,7 +34,7 @@ jobs:
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/devops:${{ github.sha }}    
 
       - name: SSH into Ubuntu
-        uses: appleboy/ssh-action@v0.4
+        uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.UBUNTU_HOST }}
           username: ${{ secrets.UBUNTU_USERNAME }}
