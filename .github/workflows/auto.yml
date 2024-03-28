@@ -10,39 +10,10 @@ on:
   pull_request:
     branches: [ "main" ]
 
-# jobs:
-#   build:
-#     runs-on: ubuntu-20.04
+jobs:
+  build:
+    runs-on: ubuntu-20.04
 
-#     steps:
-#       - name: Checkout code
-#         uses: actions/checkout@v3
-
-#       - name: Login to Docker Hub
-#         run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
-
-#       - name: Build Docker image
-#         run: |
-#           docker build -t devops:github-actions -f Dockerfile .
-#           docker tag devops:github-actions ${{ secrets.DOCKERHUB_USERNAME }}/devops:github-actions
-#           docker tag devops:github-actions ${{ secrets.DOCKERHUB_USERNAME }}/devops:${{ github.sha }}
-        
-#       - name: Push Docker image to Docker Hub
-#         run: |
-#           docker push ${{ secrets.DOCKERHUB_USERNAME }}/devops:github-actions
-#           docker push ${{ secrets.DOCKERHUB_USERNAME }}/devops:${{ github.sha }}
-
-      # - name: SSH into Ubuntu
-      #   uses: appleboy/ssh-action@v0.4
-      #   with:
-      #     host: ${{ secrets.UBUNTU_HOST }}
-      #     username: ${{ secrets.UBUNTU_USERNAME }}
-      #     password: ${{ secrets.UBUNTU_PASSWORD }}
-
-      # - name: Pull Docker image on Ubuntu
-      #   run: |
-      #     docker pull ${{ secrets.DOCKERHUB_USERNAME }}/devops:github-actions
-
-      # - name: Run Docker container on Ubuntu
-      #   run: |
-      #     docker run -d --name my-container ${{ secrets.DOCKERHUB_USERNAME }}/devops:github-actions    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
