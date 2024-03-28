@@ -2,6 +2,7 @@ name: CI
 
 on:
   schedule:
+    # 2:15 PM UTC
     - cron: '15 14 * * *'
   push:
     branches: [ "main" ]
