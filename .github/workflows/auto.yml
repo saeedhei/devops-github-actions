@@ -33,9 +33,13 @@ jobs:
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/devops:github-actions
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/devops:${{ github.sha }}    
 
-      - name: SSH into Ubuntu
+      - name: SSH into Ubuntu Server and Run Docker
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.UBUNTU_HOST }}
-          username: ${{ secrets.UBUNTU_USERNAME }}
-          password: ${{ secrets.UBUNTU_PASSWORD }}
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          # script: |
+          #   docker pull your_docker_image
+          #   docker run -d your_docker_image
