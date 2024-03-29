@@ -33,9 +33,14 @@ jobs:
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/devops:github-actions
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/devops:${{ github.sha }}    
 
+      - name: Decrypt SSH Passphrase
+        run: |
+          echo "${{ secrets.UBUNTU_ENCRYPTED_PASSPHRASE }}" | base64 --decode | openssl aes-256-cbc -d -k "${{ secrets.UBUNTU_PASSPHRASE_ENCRYPTION_KEY }}" > decrypted_passphrase
+        id: decrypt
+
       - name: SSH into Ubuntu
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.UBUNTU_HOST }}
           username: ${{ secrets.UBUNTU_USERNAME }}
-          password: ${{ secrets.UBUNTU_PASSWORD }}
+          password: ${{ steps.decrypt.outputs.decrypted_passphrase }}
