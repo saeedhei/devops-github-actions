@@ -41,7 +41,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
-          # script: |
-          #   docker pull your_docker_image
-          #   docker run -d your_docker_image
+          script: |
+            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/devops:github-actions
+            docker run -d ${{ secrets.DOCKERHUB_USERNAME }}/devops:github-actions
           
