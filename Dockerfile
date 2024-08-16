@@ -7,4 +7,5 @@ WORKDIR /usr/src/app
 COPY z-git.txt .
 
 # Define the command to run the tests
+# g
 CMD ["cat", "z-git.txt"]
